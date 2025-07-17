@@ -5,7 +5,8 @@ edition = "2021"
 
 [dependencies]
 ffmpeg-next = "7.0"
-opencv = "0.88"
+# Temporarily disable opencv due to M1 build issues
+# opencv = "0.88"
 tokio = { version = "1.0", features = ["full"] }
 rayon = "1.10"
 candle-core = "0.8"
@@ -13,3 +14,18 @@ candle-nn = "0.8"
 clap = { version = "4.0", features = ["derive"] }
 anyhow = "1.0"
 thiserror = "1.0"
+
+# Alternative image processing libraries that work well on M1
+image = "0.24"
+imageproc = "0.23"
+nalgebra = "0.32"  # For matrix operations
+ndarray = "0.15"   # For array operations
+
+# Optional: Add opencv back as a feature flag
+[features]
+default = []
+with-opencv = ["opencv"]
+
+[dependencies.opencv]
+version = "0.88"
+optional = true
